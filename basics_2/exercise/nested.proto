@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+// Top down nested approach
+message City {
+  string cityName = 1;
+  string zipCode = 2;
+  string countryName = 3;
+
+  message Street {
+    string streetName = 1;
+    City city = 2;
+
+    message Building {
+      string buildingName = 1;
+      uint32 buildingNumber = 2;
+      Street street = 3;
+    }
+  }
+}
+
+message Address {
+  City city = 1;
+  City.Street street = 2;
+  City.Street.Building building = 3;
+}
